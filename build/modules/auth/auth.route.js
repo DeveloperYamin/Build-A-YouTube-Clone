@@ -1,0 +1,12 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const zod_express_middleware_1 = require("zod-express-middleware");
+const auth_controller_1 = require("./auth.controller");
+const auth_schema_1 = require("./auth.schema");
+const router = express_1.default.Router();
+router.post("/", (0, zod_express_middleware_1.processRequestBody)(auth_schema_1.loginSchema.body), auth_controller_1.loginHandler);
+exports.default = router;
