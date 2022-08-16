@@ -23,12 +23,10 @@ app.use(
 app.use(helmet());
 app.use(deserializeUser);
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => res.send(`process.env.NODE_ENV === ${process.env.NODE_ENV}`));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/videos", videoRoute);
-
-console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
 const server = app.listen(process.env.PORT, async () => {
   await connectToDatabase();

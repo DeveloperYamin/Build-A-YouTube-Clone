@@ -8,10 +8,8 @@ import { registerUserSchema } from "./user.schema";
 
 const router = express.Router();
 
-router.get("/", requireUser, (req: Request, res: Response) => {
-  return res.locals.user
-    ? res.send(res.locals.user)
-    : res.status(StatusCodes.UNAUTHORIZED).send("Unauthorized");
+router.get("/", requireUser, (req, res) => {
+  return res.send(res.locals.user);
 });
 
 router.post(
