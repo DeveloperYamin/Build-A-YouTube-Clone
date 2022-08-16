@@ -27,9 +27,9 @@ export async function loginHandler(
   res.cookie("accessToken", jwt, {
     maxAge: 3.154e10, // 1 year
     httpOnly: true,
-    domain: process.env.CookieDomain,
+    domain: "build-a-you-tube-clone-mern.vercel.app",
     path: "/",
-    sameSite: "strict",
+    sameSite: "none",
     secure: true,
   });
 
