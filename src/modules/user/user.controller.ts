@@ -13,7 +13,7 @@ export async function registerUserHandler(
     await createUser({ username, email, password });
 
     return res.status(StatusCodes.CREATED).send("user created successfully");
-  } catch (e) {
+  } catch (e:any) {
     if (e.code === 11000) {
       return res.status(StatusCodes.CONFLICT).send("User already exists");
     }
