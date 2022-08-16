@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { connectToDatabase, disconnectFromDatabase } from "./utils/database";
-import logger from "./utils/logger";
 import helmet from "helmet";
 import userRoute from "./modules/user/user.route";
 import authRoute from "./modules/auth/auth.route";
@@ -33,20 +32,20 @@ console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
 const server = app.listen(process.env.PORT, async () => {
   await connectToDatabase();
-  logger.info(`Server listening at http://localhost:${process.env.PORT}`);
+  console.log(`Server listening at http://localhost:${process.env.PORT}`);
 });
 
 const signals = ["SIGTERM", "SIGINT"];
 
 function gracefulShutdown(signal: string) {
   process.on(signal, async () => {
-    logger.info("Goodbye, got signal", signal);
+    console.log("Goodbye, got signal", signal);
     server.close();
 
     // disconnect from the db
     await disconnectFromDatabase();
 
-    logger.info("My work here is done");
+    console.log("My work here is done");
 
     process.exit(0);
   });
