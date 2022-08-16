@@ -27,9 +27,9 @@ export async function loginHandler(
   res.cookie("accessToken", jwt, {
     maxAge: 3.154e10, // 1 year
     httpOnly: true,
-    domain: process.env.COOKIE_DOMAIN,
-    path: "/",
-    sameSite: "none",
+    // domain: process.env.COOKIE_DOMAIN,
+    // path: "/",
+    // sameSite: "none",
     secure: true,
   });
 

@@ -14,6 +14,7 @@ const app = express();
 dotenv.config();
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
@@ -23,7 +24,9 @@ app.use(
 app.use(helmet());
 app.use(deserializeUser);
 
-app.get("/", (req, res) => res.send(`process.env.NODE_ENV === ${process.env.NODE_ENV}`));
+app.get("/", (req, res) =>
+  res.send(`process.env.NODE_ENV === ${process.env.NODE_ENV}`)
+);
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/videos", videoRoute);
